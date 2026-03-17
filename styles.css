@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
-    --bg-color: #fdfdfc;
-    --text-primary: #1a1a1a;
-    --text-secondary: #4a4a4a;
-    --accent: #b89a4b;
-    --accent-light: #e6dec9;
-    --border-color: #e5e5e5;
-    --section-gap: 8rem;
-    --container-width: 1100px;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --bg-color: #fafaf9;
+    --text-primary: #1c1917;
+    --text-secondary: #57534e;
+    --accent: #8b5e34;
+    --accent-light: #f5f5f4;
+    --border-color: #e7e5e4;
+    --section-gap: 10rem;
+    --container-width: 1200px;
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
@@ -25,8 +25,13 @@ html {
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-color);
+    background-image: 
+        linear-gradient(var(--border-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: center center;
     color: var(--text-primary);
-    line-height: 1.6;
+    line-height: 1.7;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
 }
@@ -111,9 +116,10 @@ nav .container {
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
+    font-weight: 700;
 }
 
 .nav-links {
@@ -122,11 +128,16 @@ nav .container {
 }
 
 .nav-links a {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     position: relative;
+    opacity: 0.8;
+}
+
+.nav-links a:hover {
+    opacity: 1;
 }
 
 .nav-links a::after {
@@ -261,17 +272,58 @@ nav .container {
     gap: 2rem;
 }
 
-.service-card {
+.service-card, .publication-card, .award-card {
     background: #fff;
-    padding: 3rem 2rem;
+    padding: 3rem 2.5rem;
     border: 1px solid var(--border-color);
+    transition: var(--transition);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.service-card:hover, .publication-card:hover, .award-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    border-color: var(--accent);
+    transform: translateY(-8px);
+}
+
+/* Form Styling */
+.contact-form {
+    margin-top: 4rem;
+    text-align: left;
+    background: #fff;
+    padding: 4rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.form-control {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+    font-family: inherit;
+    font-size: 1rem;
     transition: var(--transition);
 }
 
-.service-card:hover {
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+.form-control:focus {
+    outline: none;
     border-color: var(--accent);
-    transform: translateY(-5px);
+    background: #fff;
 }
 
 .service-icon {

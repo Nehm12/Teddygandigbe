@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Dynamic Copyright Year
+    const yearSpan = document.getElementById('current-year');
+    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+    // Calculate Years of Experience (Started in 2012)
+    const experienceStat = document.querySelector('[data-target="12"]');
+    if (experienceStat) {
+        const startYear = 2012;
+        const currentYear = new Date().getFullYear();
+        experienceStat.setAttribute('data-target', currentYear - startYear);
+    }
+
     // Smooth scroll for navigation links
     const navLinks = document.querySelectorAll('.nav-links a');
     
@@ -62,6 +74,55 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         window.requestAnimationFrame(step);
     }
+
+    // Contact Form Handling
+    const contactForm = document.getElementById('portfolio-form');
+    const formFeedback = document.getElementById('form-feedback');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = contactForm.querySelector('button');
+            const originalText = btn.textContent;
+            
+            btn.textContent = 'Envoi en cours...';
+            btn.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                contactForm.reset();
+                btn.textContent = originalText;
+                btn.disabled = false;
+                
+                formFeedback.style.display = 'block';
+                formFeedback.style.color = '#15803d'; // Green-700
+                formFeedback.textContent = 'Merci ! Votre message a été envoyé avec succès.';
+                
+                setTimeout(() => {
+                    formFeedback.style.display = 'none';
+                }, 5000);
+            }, 1500);
+        });
+    }
+
+    // Back to Top Button
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+            backToTop.style.display = 'flex';
+            backToTop.style.alignItems = 'center';
+            backToTop.style.justifyContent = 'center';
+        } else {
+            backToTop.style.display = 'none';
+        }
+    });
+
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 
     // Simple scroll animation for cards and timeline items
     const observerOptions = {
